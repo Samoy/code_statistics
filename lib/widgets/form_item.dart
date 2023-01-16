@@ -9,6 +9,7 @@ class FormItem<T> extends StatefulWidget {
   final Icon? icon;
   final String? initialValue;
   final bool readOnly;
+  final bool required;
   final Icon? suffixIcon;
   final TextEditingControllerCallback? onSuffixIconTap;
 
@@ -18,6 +19,7 @@ class FormItem<T> extends StatefulWidget {
       this.icon,
       this.initialValue,
       this.readOnly = false,
+      this.required = true,
       this.onValueChanged,
       this.suffixIcon,
       this.onSuffixIconTap})
@@ -46,10 +48,15 @@ class _FormItemState extends State<FormItem> {
         readOnly: widget.readOnly,
         controller: _controller,
         decoration: InputDecoration(
-            icon: widget.icon,
+            icon: Text(
+              "*",
+              style: TextStyle(
+                  color: widget.required ? Colors.red : Colors.transparent),
+            ),
             label: Text(widget.label),
             suffixIcon: widget.suffixIcon != null
                 ? IconButton(
+                    color: Theme.of(context).primaryColor,
                     onPressed: () {
                       if (widget.onSuffixIconTap != null) {
                         widget.onSuffixIconTap!(_controller);
