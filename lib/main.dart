@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '代码统计工具',
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: const [
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale('zh' 'CN'),
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.pink,
       ),
       home: const HomePage(),
     );
