@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: '代码统计工具',
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       supportedLocales: const [

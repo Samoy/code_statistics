@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 typedef TextEditingControllerCallback = void Function(
     TextEditingController controller);
 
-class FormItem<T> extends StatefulWidget {
+class FormItem<T extends String> extends StatefulWidget {
   final String label;
   final ValueChanged<T>? onValueChanged;
   final Icon? icon;
@@ -48,22 +48,25 @@ class _FormItemState extends State<FormItem> {
         readOnly: widget.readOnly,
         controller: _controller,
         decoration: InputDecoration(
-            icon: Text(
-              "*",
-              style: TextStyle(
-                  color: widget.required ? Colors.red : Colors.transparent),
+          icon: Text(
+            "*",
+            style: TextStyle(
+              color: widget.required ? Colors.red : Colors.transparent,
             ),
-            label: Text(widget.label),
-            suffixIcon: widget.suffixIcon != null
-                ? IconButton(
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () {
-                      if (widget.onSuffixIconTap != null) {
-                        widget.onSuffixIconTap!(_controller);
-                      }
-                    },
-                    icon: widget.suffixIcon!)
-                : null),
+          ),
+          label: Text(widget.label),
+          suffixIcon: widget.suffixIcon != null
+              ? IconButton(
+                  color: Theme.of(context).primaryColor,
+                  onPressed: () {
+                    if (widget.onSuffixIconTap != null) {
+                      widget.onSuffixIconTap!(_controller);
+                    }
+                  },
+                  icon: widget.suffixIcon!,
+                )
+              : null,
+        ),
         key: widget.key,
         onChanged: widget.onValueChanged,
       ),
